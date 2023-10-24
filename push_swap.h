@@ -6,7 +6,7 @@
 /*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 07:59:50 by hnagasak          #+#    #+#             */
-/*   Updated: 2023/10/25 04:33:02 by hnagasak         ###   ########.fr       */
+/*   Updated: 2023/10/25 04:48:52 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,19 @@ typedef struct s_stack
 t_stack				*create_stack(char *_name);
 int					pop(t_stack *stack);
 
-// push
+// swap.c
+void				swap(t_stack *stack);
+void				sa(t_stack *a);
+void				sa(t_stack *a);
+
+// push.c
 void				push(t_stack *stack, int value);
 void				pa(t_stack *a, t_stack *b);
 void				pb(t_stack *a, t_stack *b);
 
-// operation
-void				swap(t_stack *stack);
+// rotate.c
 void				rotate(t_stack *stack);
+// reverse_rotate.c
 void				reverse_rotate(t_stack *stack);
 
 // debug

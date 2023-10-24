@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operation.c                                        :+:      :+:    :+:   */
+/*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/25 03:28:14 by hnagasak          #+#    #+#             */
-/*   Updated: 2023/10/25 04:00:03 by hnagasak         ###   ########.fr       */
+/*   Created: 2023/10/25 04:41:59 by hnagasak          #+#    #+#             */
+/*   Updated: 2023/10/25 04:44:03 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ void	swap(t_stack *stack)
 	stack->bottom->next = next;
 }
 
-void	rotate(t_stack *stack)
+void	sa(t_stack *a)
 {
-	stack->top = stack->top->next;
-	stack->bottom = stack->top->prev;
+	swap(a);
+	printf("sa\n");
 }
 
-void	reverse_rotate(t_stack *stack)
+void	sb(t_stack *b)
 {
-	stack->bottom = stack->bottom->prev;
-	stack->top = stack->bottom->next;
+	swap(b);
+	printf("sb\n");
 }

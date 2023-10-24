@@ -9,8 +9,10 @@ INCLUDE := headers
 SRCS = \
 push_swap.c\
 stack.c\
-operation.c\
+swap.c\
 push.c\
+rotate.c\
+reverse_rotate.c\
 debug.c\
 
 $(NAME): $(OBJS)
