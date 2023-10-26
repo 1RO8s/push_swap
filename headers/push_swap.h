@@ -6,7 +6,7 @@
 /*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 07:59:50 by hnagasak          #+#    #+#             */
-/*   Updated: 2023/10/25 04:48:52 by hnagasak         ###   ########.fr       */
+/*   Updated: 2023/10/26 20:25:18 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,16 @@ typedef struct s_stack
 	int				size;
 }					t_stack;
 
-t_stack				*create_stack(char *_name);
+// stack.c
+t_stack				*create_stack(char *_name, int *values, int values_count);
+int					*get_values(t_stack *stack);
 int					pop(t_stack *stack);
 
 // swap.c
 void				swap(t_stack *stack);
 void				sa(t_stack *a);
-void				sa(t_stack *a);
+void				sb(t_stack *b);
+void				ss(t_stack *a, t_stack *b);
 
 // push.c
 void				push(t_stack *stack, int value);
@@ -55,8 +58,22 @@ void				pb(t_stack *a, t_stack *b);
 
 // rotate.c
 void				rotate(t_stack *stack);
+void				ra(t_stack *a);
+void				rb(t_stack *b);
+void				rr(t_stack *a, t_stack *b);
+
 // reverse_rotate.c
 void				reverse_rotate(t_stack *stack);
+void				rra(t_stack *a);
+void				rrb(t_stack *b);
+void				rrr(t_stack *a, t_stack *b);
+
+// sort.c
+void				sort3(t_stack *a);
+
+// libft
+int					ft_atoi(const char *str);
+int					ft_printf(const char *format, ...);
 
 // debug
 void				print_stack(t_stack *stack);
