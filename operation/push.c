@@ -6,7 +6,7 @@
 /*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 04:11:10 by hnagasak          #+#    #+#             */
-/*   Updated: 2023/10/25 04:32:14 by hnagasak         ###   ########.fr       */
+/*   Updated: 2023/10/26 17:36:05 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ void	push(t_stack *stack, int value)
 */
 void	pa(t_stack *a, t_stack *b)
 {
-	if (a->size < 1)
+	if (b->size < 1)
 		return ;
 	push(a, pop(b));
-	printf("pa\n");
+	ft_printf("pa\n");
 }
 
 /**
@@ -63,8 +63,8 @@ void	pa(t_stack *a, t_stack *b)
 */
 void	pb(t_stack *a, t_stack *b)
 {
-	if (b->size < 1)
+	if (a->size < 1)
 		return ;
 	push(b, pop(a));
-	printf("pb\n");
+	ft_printf("pb\n");
 }

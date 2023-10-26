@@ -6,13 +6,50 @@
 /*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:30:16 by hnagasak          #+#    #+#             */
-/*   Updated: 2023/10/25 04:34:07 by hnagasak         ###   ########.fr       */
+/*   Updated: 2023/10/26 20:24:54 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*create_stack(char *_name)
+void	set_values(t_stack *stack, int *values, int values_count)
+{
+	int	i;
+
+	if (values == NULL)
+		return ;
+	i = 0;
+	while (values[i])
+	{
+		push(stack, values[values_count - i - 1]);
+		i++;
+	}
+}
+
+int	*get_values(t_stack *stack)
+{
+	int	*values;
+	int	i;
+
+	values = (int *)malloc(sizeof(int) * stack->size);
+	i = 0;
+	while (i < stack->size)
+	{
+		values[i] = stack->top->value;
+		stack->top = stack->top->next;
+		i++;
+	}
+	return (values);
+}
+
+/**
+* Take the first element at the top of A and put it at the top of B.
+* Do nothing if A is empty.
+* @param[out] a stack of a
+* @param[out] b stack of b
+* @return void 
+*/
+t_stack	*create_stack(char *_name, int *values, int values_count)
 {
 	t_stack	*stack;
 
@@ -23,6 +60,7 @@ t_stack	*create_stack(char *_name)
 	stack->top = NULL;
 	stack->bottom = NULL;
 	stack->size = 0;
+	set_values(stack, values, values_count);
 	return (stack);
 }
 
