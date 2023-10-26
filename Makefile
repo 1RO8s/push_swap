@@ -1,49 +1,41 @@
+.PHONY: all debug analyze clean fclean re
+
 NAME :=push_swap
 CC := cc
-CFLAGS = -Wall -Wextra -Werror
-DEBUG := -g -fsanitize=address
 OBJS	= $(SRCS:.c=.o)
 INCLUDE := headers
 
 # コンパイル対象ファイル
 SRCS = \
 push_swap.c\
-stack.c\
-swap.c\
-push.c\
-rotate.c\
-reverse_rotate.c\
+operation/stack.c\
+operation/swap.c\
+operation/push.c\
+operation/rotate.c\
+operation/reverse_rotate.c\
+sort/sort.c\
 debug.c\
 
 $(NAME): $(OBJS)
-	# $(MAKE) -C ./libft
-	$(CC) ${CFLAGS} $(OBJS) -o $(NAME)
-	# $(CC) ${CFLAGS} $(OBJS) -o $(NAME) ./libft/libft.a
+	$(MAKE) -C ./libft
+	$(CC) ${CFLAGS} $(OBJS) -o $(NAME) ./libft/libft.a
 
 %.o: %.c
-	$(CC) ${CFLAGS} -c $< -o $@
+	$(CC) ${CFLAGS} -I${INCLUDE} -c $< -o $@
 
-.PHONY: all
+
 all:CFLAGS=-Wall -Wextra -Werror
 all:${NAME}
 
-.PHONY: debug
-debug:CFLAGS=$(DEBUG)
+debug:CFLAGS=-g -fsanitize=address
 debug:${NAME}
 
+clean: 
+	rm -f $(OBJS)
+fclean: clean
+	rm -f ${NAME}
+re: fclean all
 # 静的解析
-.PHONY: analyze
 analyze:
 	rm -f *.plist
 	cc --analyze ${SRCS}
-
-.PHONY: clean
-clean: 
-	rm -f $(OBJS)
-
-.PHONY: fclean
-fclean: clean
-	rm -f ${NAME}
-
-.PHONY: re
-re: fclean all
