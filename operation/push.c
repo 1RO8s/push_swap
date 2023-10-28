@@ -6,7 +6,7 @@
 /*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 04:11:10 by hnagasak          #+#    #+#             */
-/*   Updated: 2023/10/26 17:36:05 by hnagasak         ###   ########.fr       */
+/*   Updated: 2023/10/28 12:03:32 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	push(t_stack *stack, int value)
 	new->value = value;
 	new->next = stack->top;
 	new->prev = stack->bottom;
-	new->ordinal = -1;
+	// new->ordinal = -1;
 	if (stack->size == 0)
 	{
 		new->next = new;

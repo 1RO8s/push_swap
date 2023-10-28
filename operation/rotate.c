@@ -6,7 +6,7 @@
 /*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 03:28:14 by hnagasak          #+#    #+#             */
-/*   Updated: 2023/10/26 17:53:45 by hnagasak         ###   ########.fr       */
+/*   Updated: 2023/10/28 19:16:49 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	rotate(t_stack *stack)
 {
+	printf("-- rotate --\n");
 	stack->top = stack->top->next;
 	stack->bottom = stack->top->prev;
 }

@@ -6,7 +6,7 @@
 /*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 07:59:50 by hnagasak          #+#    #+#             */
-/*   Updated: 2023/10/26 20:25:18 by hnagasak         ###   ########.fr       */
+/*   Updated: 2023/10/28 11:58:14 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,14 @@ void				rra(t_stack *a);
 void				rrb(t_stack *b);
 void				rrr(t_stack *a, t_stack *b);
 
+// compression.c
+void				compression(t_stack *stack);
+void				set_order(t_stack *stack);
+
 // sort.c
+void				sort2(t_stack *a);
 void				sort3(t_stack *a);
+void				sort6(t_stack *a, t_stack *b);
 
 // libft
 int					ft_atoi(const char *str);

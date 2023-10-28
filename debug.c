@@ -6,7 +6,7 @@
 /*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 01:36:18 by hnagasak          #+#    #+#             */
-/*   Updated: 2023/10/25 04:07:17 by hnagasak         ###   ########.fr       */
+/*   Updated: 2023/10/28 09:40:43 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	print_stack_summary(t_stack *stack)
 {
-	printf("--- %s ---\n", stack->name);
+	printf("--- %s ", stack->name);
 	if (stack->size > 0)
 	{
 		printf("top:%d ", stack->top->value);
 		printf("bottom:%d ", stack->bottom->value);
 	}
-	printf("size:%d ", stack->size);
+	printf("size:%d ---", stack->size);
 	printf("\n");
 }
 
@@ -38,7 +38,7 @@ void	print_stack_values(t_stack *stack)
 	{
 		if (node == NULL)
 			node = stack->top;
-		printf("%d ", node->value);
+		printf("%d[%d] ", node->value, node->ordinal);
 		node = node->next;
 	}
 	printf("\n");

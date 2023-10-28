@@ -13,6 +13,7 @@ operation/swap.c\
 operation/push.c\
 operation/rotate.c\
 operation/reverse_rotate.c\
+compression.c\
 sort/sort.c\
 debug.c\
 
