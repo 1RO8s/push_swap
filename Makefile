@@ -16,6 +16,7 @@ operation/reverse_rotate.c\
 compression.c\
 sort/sort.c\
 debug.c\
+test/test_swap.c\
 
 $(NAME): $(OBJS)
 	$(MAKE) -C ./libft

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: hnagasak <hnagasak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 05:57:37 by hnagasak          #+#    #+#             */
-/*   Updated: 2023/10/28 19:45:35 by hnagasak         ###   ########.fr       */
+/*   Updated: 2023/10/28 21:03:51 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,32 +43,33 @@ int	main(int argc, char *argv[])
 
 	// スタック初期化
 	printf("values[0]:%d\n",values[0]);
+	printf("values_count:%d\n",values_count);
 	stca = create_stack("stack_A", values, values_count);
 	stcb = create_stack("stack_B", NULL, 0);
-	printf("values[0]:%d\n",values[0]);
+	// printf("values[0]:%d\n",values[0]);
 	// stcb = create_stack("stack_B",values, values_count);
-	set_order(stca);
-	pb(stca, stcb);
-	pb(stca, stcb);
-	pb(stca, stcb);
-
 	print_stack(stca);
-	print_stack(stcb);	
-	// if (values_count == 2)
-	// 	sort2(stca);
-	// else if (values_count == 3)
-	// 	sort3(stca);
-	// if (values_count <= 6)
-	// 	sort6(stca, stcb);
-	// // else
-	// 	sort7(values);
-	// compression(stca);
-	// set_order(stca);
 	print_stack(stcb);
-	rrb(stcb);
-	rrb(stcb);
+	set_order(stca);
+
+	printf("### 座標圧縮\n");
+		
+	// // if (values_count == 2)
+	// // 	sort2(stca);
+	// // else if (values_count == 3)
+	// // 	sort3(stca);
+	if (values_count <= 6)
+		sort6(stca, stcb);
+	// // // else
+	// // 	sort7(values);
+	printf("### ソート終了\n");
+	// // compression(stca);
+	// // set_order(stca);
+	print_stack(stcb);
 	rrb(stcb);
 	// print_stack(stca);
 	print_stack(stcb);
-	// test();
+	
+	
+	// test_swap(argc,argv);
 }

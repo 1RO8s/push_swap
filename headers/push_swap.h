@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: hnagasak <hnagasak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 07:59:50 by hnagasak          #+#    #+#             */
-/*   Updated: 2023/10/28 11:58:14 by hnagasak         ###   ########.fr       */
+/*   Updated: 2023/10/28 20:49:25 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,11 @@ int					ft_printf(const char *format, ...);
 void				print_stack(t_stack *stack);
 void				print_stack_values(t_stack *stack);
 void				print_node(t_node *node);
+
+// test
+int	test_swap(int argc, char *argv[]);
+
+// push_swap.c
+int	*argvtoi(int argc, char *argv[]);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: hnagasak <hnagasak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 17:41:36 by hnagasak          #+#    #+#             */
-/*   Updated: 2023/10/28 19:37:44 by hnagasak         ###   ########.fr       */
+/*   Updated: 2023/10/28 20:27:46 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,33 @@ void	sort3(t_stack *a)
 	}
 }
 
+void	sort3b(t_stack *b)
+{
+	int	*v;
+
+	ft_printf("<sort3b >\n");
+	v = get_values(b);
+	if (v[0] < v[1] && v[1] < v[2]) // 1 2 3
+		return ;
+	else if (v[0] < v[1] && v[1] > v[2] && v[2] > v[0]) // 1 3 2
+	{
+		rrb(b);
+		sb(b);
+	}
+	else if (v[0] > v[1] && v[1] < v[2] && v[2] > v[0]) // 2 1 3
+		sb(b);
+	else if (v[0] < v[1] && v[1] > v[2] && v[2] < v[0]) // 2 3 1
+		rrb(b);
+	else if (v[0] > v[1] && v[1] < v[2] && v[2] < v[0]) // 3 1 2
+		rb(b);
+	else if (v[0] > v[1] && v[1] > v[2] && v[2] < v[0]) // 3 2 1
+	{
+		rb(b);
+		sb(b);
+	}
+	ft_printf("< sort3b/>\n");
+}
+
 void	sort6(t_stack *a, t_stack *b)
 {
 	t_node *node;
@@ -67,16 +94,17 @@ void	sort6(t_stack *a, t_stack *b)
 			ra(a);
 		node = a->top;
 	}
-	sort3(a);
-	sort3(b);
+	// sort3(a);
+	sort3b(b);
 
 	printf("--- sorted ---\n");
 
 	print_stack(b);
-	// rb(b);
+	rrb(b);
 	// pa(a, b);
 	// rrb(b);
 	// pa(a, b);
 	// rrb(b);
 	// pa(a, b);
+	print_stack(b);
 }

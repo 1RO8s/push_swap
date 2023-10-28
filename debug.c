@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: hnagasak <hnagasak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 01:36:18 by hnagasak          #+#    #+#             */
-/*   Updated: 2023/10/28 09:40:43 by hnagasak         ###   ########.fr       */
+/*   Updated: 2023/10/28 20:17:41 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ void	print_stack_values(t_stack *stack)
 	{
 		if (node == NULL)
 			node = stack->top;
-		printf("%d[%d] ", node->value, node->ordinal);
+		ft_printf("%d[%d] ", node->value, node->ordinal);
 		node = node->next;
 	}
-	printf("\n");
+	ft_printf("\n");
 }
 
 void	print_stack(t_stack *stack)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: hnagasak <hnagasak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 04:11:10 by hnagasak          #+#    #+#             */
-/*   Updated: 2023/10/28 12:03:32 by hnagasak         ###   ########.fr       */
+/*   Updated: 2023/10/28 20:10:55 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@ void	push(t_stack *stack, int value)
 {
 	t_node	*new;
 
+	// printf("--- push %d to %s ---\n", value, stack->name);
+
 	new = (t_node *)malloc(sizeof(t_node));
 	new->value = value;
 	new->next = stack->top;
 	new->prev = stack->bottom;
-	// new->ordinal = -1;
+	new->ordinal = -1;
 	if (stack->size == 0)
 	{
 		new->next = new;

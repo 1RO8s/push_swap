@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reverse_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: hnagasak <hnagasak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 03:28:14 by hnagasak          #+#    #+#             */
-/*   Updated: 2023/10/28 19:43:30 by hnagasak         ###   ########.fr       */
+/*   Updated: 2023/10/28 20:22:05 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 void	reverse_rotate(t_stack *stack)
 {
-	printf("-- reverse_rotate --\n");
+	ft_printf("-- reverse_rotate %s --\n",stack->name);
 	print_stack(stack);
+	printf("bottom:%d\n",stack->bottom->value);
 	printf("bottom->prev:%d\n",stack->bottom->prev->value);
 	printf("bottom->next:%d\n",stack->bottom->next->value);
 	stack->bottom = stack->bottom->prev;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: hnagasak <hnagasak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:30:16 by hnagasak          #+#    #+#             */
-/*   Updated: 2023/10/26 20:24:54 by hnagasak         ###   ########.fr       */
+/*   Updated: 2023/10/28 20:02:27 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	set_values(t_stack *stack, int *values, int values_count)
 	if (values == NULL)
 		return ;
 	i = 0;
-	while (values[i])
+	while (i < values_count)
 	{
 		push(stack, values[values_count - i - 1]);
 		i++;
