@@ -6,11 +6,29 @@
 /*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 05:57:37 by hnagasak          #+#    #+#             */
-/*   Updated: 2023/11/03 17:59:02 by hnagasak         ###   ########.fr       */
+/*   Updated: 2023/11/04 00:51:28 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	free_stack(t_stack *stack)
+{
+	t_node	*node;
+	t_node	*next;
+
+	node = NULL;
+	while (stack->size > 0)
+	{
+		if (node == NULL)
+			node = stack->top;
+		next = node->next;
+		free(node);
+		node = next;
+		stack->size--;
+	}
+	free(stack);
+}
 
 int	main(int argc, char *argv[])
 {
@@ -37,8 +55,6 @@ int	main(int argc, char *argv[])
 	stcb = create_stack('B', NULL, 0);
 	// printf("values[0]:%d\n",values[0]);
 	// stcb = create_stack("stack_B",values, values_size);
-	// print_stack(stca);
-	// print_stack(stcb);
 	set_order(stca);
 	// printf("### 座標圧縮\n");
 	if (values_size == 2)
@@ -56,11 +72,8 @@ int	main(int argc, char *argv[])
 	// // // else
 	// // 	sort7(values);
 	// printf("### ソート終了\n");
-	// // // compression(stca);
-	// // // set_order(stca);
-	// print_stack(stcb);
-	// rrb(stcb);
-	// print_stack(stca);
-	// print_stack(stcb);
+	free_stack(stca);
+	free_stack(stcb);
+	free(values);
 	// test_swap(argc,argv);
 }
