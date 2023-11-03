@@ -6,7 +6,7 @@
 /*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 16:04:38 by hnagasak          #+#    #+#             */
-/*   Updated: 2023/11/02 01:10:38 by hnagasak         ###   ########.fr       */
+/*   Updated: 2023/11/04 02:13:21 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,12 +223,18 @@ int	ft_abs(int n)
 int	get_total_cost(int cost_a, int cost_b)
 {
 	if ((cost_a > 0 && cost_b > 0) || (cost_a < 0 && cost_b < 0))
-		return (ft_abs(cost_a) < ft_abs(cost_b) ? ft_abs(cost_b) : ft_abs(cost_a));
+	{
+		if (ft_abs(cost_a) < ft_abs(cost_b))
+			return (ft_abs(cost_b));
+		else
+			return (ft_abs(cost_a));
+	}
 	else
 		return (ft_abs(cost_a) + ft_abs(cost_b));
 }
 
-int is_asc_sorted(t_stack *stack){
+int	is_asc_sorted(t_stack *stack)
+{
 	t_node	*node;
 
 	node = NULL;
@@ -243,123 +249,97 @@ int is_asc_sorted(t_stack *stack){
 	return (1);
 }
 
-void	turk_sort(t_stack *a, t_stack *b)
+void	exec_push(t_stack *a, t_stack *b, int cost_a, int cost_b)
 {
-	int		cost_b;
-	int		cost_a;
-	t_node	*node;
-	t_node	*node_b;
-	int		total_cost;
-	int		min_cost;
-	int		min_cost_a;
-	int		min_cost_b;
-	t_node	*tgt;
-	int		cost;
-	// t_node	*min_node;
-
-	// printf("--- turk_sort ---\n");
-	if (is_asc_sorted(a))
-		return;
-	pb(a, b);
-	pb(a, b);
-	// print_stack(a);
-	// print_stack(b);
-	while (a->size > 3)
+	if (cost_a > 0 && cost_b > 0)
 	{
-		// printf("_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/\n");
-		// printf("%d < %d || %d > %d:", max_of(b), a->top->value, min_of(b),
-		// 		a->top->value);
-		// printf("%s\n", (max_of(b) < a->top->value
-		// || min_of(b) > a->top->value) ? "True" : "False");
-		// if (max_of(b) < a->top->value || min_of(b) > a->top->value)
-		node = NULL;
-		min_cost = INT_MAX;
-		while (node != a->top) // すべてのaに対して操作数を計算
+		if (cost_a < cost_b)
 		{
-			if (node == NULL)
-				node = a->top;
-			// aをpushする先のbと、それをtopに移動するまでの操作回数を計算
-			node_b = get_target_node(b, node->value); // bの一番上になるノードを取得
-			cost_b = calc_cost(node_b->value, b);     // 一番上に移動するまでのコストを計算
-			// nodeをtopに移動するまでのコストを計算
-			cost_a = calc_cost(node->value, a);
-			// printf("a = %2d[%d] ,", node->value, cost_a);
-			// printf("b = %2d[%d] ,", node_b->value, cost_b);
-			total_cost = get_total_cost(cost_a, cost_b);
-			// printf("total:%2d\n", total_cost);
-			if (min_cost > total_cost)
-			{
-				min_cost = total_cost;
-				// min_node = node;
-				min_cost_a = cost_a;
-				min_cost_b = cost_b;
-			}
-			node = node->next;
-		}
-		// min_costに従って、rotate or reverse_rotate
-		// printf("min_node:%d a[%d] b[%d]\n", min_node->value, min_cost_a,min_cost_b);
-		if (min_cost_a > 0 && min_cost_b > 0)
-		{
-			if (min_cost_a < min_cost_b)
-			{
-				ope_ab(a, b, min_cost_a);
-				operation_b(b, min_cost_b - min_cost_a);
-			}
-			else
-			{
-				ope_ab(a, b, min_cost_b);
-				operation_a(a, min_cost_a - min_cost_b);
-			}
-		}
-		else if (min_cost_a < 0 && min_cost_b < 0)
-		{
-			if (min_cost_a < min_cost_b)
-			{
-				ope_ab(a, b, min_cost_b);
-				operation_a(a, min_cost_a - min_cost_b);
-			}
-			else
-			{
-				ope_ab(a, b, min_cost_a);
-				operation_b(b, min_cost_b - min_cost_a);
-			}
+			ope_ab(a, b, cost_a);
+			operation_b(b, cost_b - cost_a);
 		}
 		else
 		{
-			operation_a(a, min_cost_a);
-			operation_b(b, min_cost_b);
+			ope_ab(a, b, cost_b);
+			operation_a(a, cost_a - cost_b);
 		}
-		pb(a, b);
-		// print_stack(a);
-		// print_stack(b);
 	}
-	// printf("-----------------------\n");
-	// printf("      pb complete      \n");
-	// printf("-----------------------\n");
+	else if (cost_a < 0 && cost_b < 0)
+	{
+		if (cost_a < cost_b)
+		{
+			ope_ab(a, b, cost_b);
+			operation_a(a, cost_a - cost_b);
+		}
+		else
+		{
+			ope_ab(a, b, cost_a);
+			operation_b(b, cost_b - cost_a);
+		}
+	}
+	else
+	{
+		operation_a(a, cost_a);
+		operation_b(b, cost_b);
+	}
+	pb(a, b);
+}
+
+typedef struct s_cost
+{
+	int		a;
+	int		b;
+	int		total;
+}			t_cost;
+
+void	pb_desc(t_stack *a, t_stack *b, t_node *node)
+{
+	t_node	*target;
+	t_cost	*cost;
+	t_cost	*min;
+
+	cost = (t_cost *)malloc(sizeof(t_cost));
+	min = (t_cost *)malloc(sizeof(t_cost));
+	min->total = INT_MAX;
+	while (node != a->top)
+	{
+		if (node == NULL)
+			node = a->top;
+		target = get_target_node(b, node->value);
+		cost->b = calc_cost(target->value, b);
+		cost->a = calc_cost(node->value, a);
+		cost->total = get_total_cost(cost->a, cost->b);
+		if (min->total > cost->total)
+		{
+			min->total = cost->total;
+			min->a = cost->a;
+			min->b = cost->b;
+		}
+		node = node->next;
+	}
+	exec_push(a, b, min->a, min->b);
+}
+
+void	turk_sort(t_stack *a, t_stack *b)
+{
+	t_node	*tgt;
+	int		cost;
+
+	if (is_asc_sorted(a))
+		return ;
+	pb(a, b);
+	pb(a, b);
+	while (a->size > 3)
+		pb_desc(a, b, NULL);
 	sort3(a);
-	// printf("-----------------------\n");
-	// printf("      sort a      \n");
-	// printf("-----------------------\n");
-	// print_stack(a);
-	// print_stack(b);
-	// bからaに戻す
 	while (b->size > 0)
 	{
-		// printf("_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/\n");
 		tgt = get_target_node_a(a, b->top->value);
 		cost = calc_cost(tgt->value, a);
-		// printf("b:%d tgt:%d cost:%d\n", b->top->value, tgt->value, cost);
 		operation_a(a, cost);
 		pa(a, b);
-		// print_stack(a);
-		// print_stack(b);
 	}
-	// printf("-----------------------\n");
-	// printf("      pa complete      \n");
-	// printf("-----------------------\n");
 	tgt = get_target_node_a(a, min_of(a) - 1);
 	cost = calc_cost(tgt->value, a);
 	operation_a(a, cost);
-	// print_stack(a);
-	// print_stack(b);
 }

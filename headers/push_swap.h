@@ -6,7 +6,7 @@
 /*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 07:59:50 by hnagasak          #+#    #+#             */
-/*   Updated: 2023/11/03 01:34:52 by hnagasak         ###   ########.fr       */
+/*   Updated: 2023/11/04 01:07:25 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ typedef struct s_stack
 	t_node			*bottom;
 	int				size;
 }					t_stack;
+
+// arg_check.c
+int					*argvtoi(int argc, char *argv[]);
 
 // stack.c
 t_stack				*create_stack(char id, int *values, int values_count);
@@ -102,11 +105,5 @@ int					ft_strncmp(const char *s1, const char *s2, size_t n);
 
 // test
 int					test_swap(int argc, char *argv[]);
-
-// push_swap.c
-
-
-// arg_check.c
-int					*argvtoi(int argc, char *argv[]);
 
 #endif
