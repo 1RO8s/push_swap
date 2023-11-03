@@ -3,108 +3,124 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hnagasak <hnagasak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 17:41:36 by hnagasak          #+#    #+#             */
-/*   Updated: 2023/10/28 20:27:46 by hnagasak         ###   ########.fr       */
+/*   Updated: 2023/11/03 01:36:24 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort2(t_stack *a)
+void	sort2(t_stack *stack)
 {
 	int	*v;
 
-	v = get_values(a);
+	v = get_values(stack);
 	if (v[0] > v[1])
-		sa(a);
+		swap(stack, 1);
 }
 
-void	sort3(t_stack *a)
+void	sort3(t_stack *stack)
 {
 	int	*v;
 
-	v = get_values(a);
+	v = get_values(stack);
 	if (v[0] < v[1] && v[1] < v[2]) // 1 2 3
 		return ;
 	else if (v[0] < v[1] && v[1] > v[2] && v[2] > v[0]) // 1 3 2
 	{
-		rra(a);
-		sa(a);
+		reverse_rotate(stack, 1);
+		swap(stack, 1);
 	}
 	else if (v[0] > v[1] && v[1] < v[2] && v[2] > v[0]) // 2 1 3
-		sa(a);
+		swap(stack, 1);
 	else if (v[0] < v[1] && v[1] > v[2] && v[2] < v[0]) // 2 3 1
-		rra(a);
+		reverse_rotate(stack, 1);
 	else if (v[0] > v[1] && v[1] < v[2] && v[2] < v[0]) // 3 1 2
-		ra(a);
+		rotate(stack, 1);
 	else if (v[0] > v[1] && v[1] > v[2] && v[2] < v[0]) // 3 2 1
 	{
-		ra(a);
-		sa(a);
+		rotate(stack, 1);
+		swap(stack, 1);
 	}
 }
 
-void	sort3b(t_stack *b)
+void	sort4(t_stack *a, t_stack *b)
 {
-	int	*v;
+	t_node	*node;
 
-	ft_printf("<sort3b >\n");
-	v = get_values(b);
-	if (v[0] < v[1] && v[1] < v[2]) // 1 2 3
-		return ;
-	else if (v[0] < v[1] && v[1] > v[2] && v[2] > v[0]) // 1 3 2
+	// printf("--- sort4 ---\n");
+	node = NULL;
+	while (a->size > 3)
 	{
-		rrb(b);
-		sb(b);
+		if (node == NULL)
+			node = a->top;
+		if (node->ordinal == 0)
+			pb(a, b);
+		else
+			rotate(a, 1);
+		node = a->top;
 	}
-	else if (v[0] > v[1] && v[1] < v[2] && v[2] > v[0]) // 2 1 3
-		sb(b);
-	else if (v[0] < v[1] && v[1] > v[2] && v[2] < v[0]) // 2 3 1
-		rrb(b);
-	else if (v[0] > v[1] && v[1] < v[2] && v[2] < v[0]) // 3 1 2
-		rb(b);
-	else if (v[0] > v[1] && v[1] > v[2] && v[2] < v[0]) // 3 2 1
+	sort3(a);
+	rrb(b);
+	pa(a, b);
+}
+
+void	sort5(t_stack *a, t_stack *b)
+{
+	t_node	*node;
+
+	// printf("--- sort5 ---\n");
+	node = NULL;
+	while (a->size > 3)
 	{
-		rb(b);
-		sb(b);
+		if (node == NULL)
+			node = a->top;
+		if (node->ordinal == 0 || node->ordinal == 1)
+			pb(a, b);
+		else
+			rotate(a, 1);
+		node = a->top;
 	}
-	ft_printf("< sort3b/>\n");
+	// printf("--- pb done ---\n");
+	// print_stack(a);
+	// print_stack(b);
+	sort3(a);
+	sort2(b);
+	// printf("--- sorted ---\n");
+	rrb(b);
+	pa(a, b);
+	rrb(b);
+	pa(a, b);
 }
 
 void	sort6(t_stack *a, t_stack *b)
 {
-	t_node *node;
+	t_node	*node;
 
-	printf("--- sort6 ---\n");
-	
-	// add 3 numbers to stack b
+	// printf("--- sort6 ---\n");
 	node = NULL;
-	while(a->size > 3)
+	while (a->size > 3)
 	{
-		if(node == NULL)
+		if (node == NULL)
 			node = a->top;
-		if(node->ordinal == 0 || node->ordinal == 1 || node->ordinal == 2)
-		{
+		if (node->ordinal == 0 || node->ordinal == 1 || node->ordinal == 2)
 			pb(a, b);
-			// node = a->top;
-		}
 		else
-			ra(a);
+			rotate(a, 1);
 		node = a->top;
 	}
-	// sort3(a);
-	sort3b(b);
-
-	printf("--- sorted ---\n");
-
-	print_stack(b);
+	// print_stack(a);
+	// print_stack(b);
+	sort3(a);
+	sort3(b);
 	rrb(b);
-	// pa(a, b);
-	// rrb(b);
-	// pa(a, b);
-	// rrb(b);
-	// pa(a, b);
-	print_stack(b);
+	pa(a, b);
+	rrb(b);
+	pa(a, b);
+	rrb(b);
+	pa(a, b);
+	// print_stack(a);
+	// print_stack(b);
 }

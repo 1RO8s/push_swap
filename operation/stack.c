@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hnagasak <hnagasak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:30:16 by hnagasak          #+#    #+#             */
-/*   Updated: 2023/10/28 20:02:27 by hnagasak         ###   ########.fr       */
+/*   Updated: 2023/10/29 00:08:01 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,14 @@ int	*get_values(t_stack *stack)
 * @param[out] b stack of b
 * @return void 
 */
-t_stack	*create_stack(char *_name, int *values, int values_count)
+t_stack	*create_stack(char id, int *values, int values_count)
 {
 	t_stack	*stack;
 
 	stack = (t_stack *)malloc(sizeof(t_stack));
 	if (stack == NULL)
 		return (NULL);
-	stack->name = _name;
+	stack->id = id;
 	stack->top = NULL;
 	stack->bottom = NULL;
 	stack->size = 0;

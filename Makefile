@@ -1,6 +1,6 @@
 .PHONY: all debug analyze clean fclean re
 
-NAME :=push_swap
+NAME := push_swap
 CC := cc
 OBJS	= $(SRCS:.c=.o)
 INCLUDE := headers
@@ -8,6 +8,7 @@ INCLUDE := headers
 # コンパイル対象ファイル
 SRCS = \
 push_swap.c\
+arg_check.c\
 operation/stack.c\
 operation/swap.c\
 operation/push.c\
@@ -15,8 +16,9 @@ operation/rotate.c\
 operation/reverse_rotate.c\
 compression.c\
 sort/sort.c\
-debug.c\
-test/test_swap.c\
+sort/turk_sort.c\
+# debug.c\
+# test/test_swap.c\
 
 $(NAME): $(OBJS)
 	$(MAKE) -C ./libft
