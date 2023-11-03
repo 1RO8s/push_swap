@@ -6,7 +6,7 @@
 /*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 03:28:14 by hnagasak          #+#    #+#             */
-/*   Updated: 2023/10/29 16:54:47 by hnagasak         ###   ########.fr       */
+/*   Updated: 2023/11/04 00:31:41 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	reverse_rotate(t_stack *stack, int print_flg)
 {
-	// ft_printf("-- reverse_rotate %c --\n",stack->id);
 	stack->bottom = stack->bottom->prev;
 	stack->top = stack->bottom->next;
 	if (print_flg == 1 && stack->id == 'A')
@@ -26,13 +25,11 @@ void	reverse_rotate(t_stack *stack, int print_flg)
 void	rra(t_stack *a)
 {
 	reverse_rotate(a, 1);
-	// ft_printf("rra\n");
 }
 
 void	rrb(t_stack *b)
 {
 	reverse_rotate(b, 1);
-	// ft_printf("rrb\n");
 }
 
 void	rrr(t_stack *a, t_stack *b)

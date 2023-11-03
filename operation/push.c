@@ -6,7 +6,7 @@
 /*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 04:11:10 by hnagasak          #+#    #+#             */
-/*   Updated: 2023/10/29 00:11:00 by hnagasak         ###   ########.fr       */
+/*   Updated: 2023/11/04 00:29:44 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 void	push(t_stack *stack, int value)
 {
 	t_node	*new;
-
-	// printf("--- push %d to %c ---\n", value, stack->id);
 
 	new = (t_node *)malloc(sizeof(t_node));
 	new->value = value;
