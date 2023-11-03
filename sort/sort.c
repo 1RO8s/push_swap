@@ -6,7 +6,7 @@
 /*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 17:41:36 by hnagasak          #+#    #+#             */
-/*   Updated: 2023/11/03 01:36:24 by hnagasak         ###   ########.fr       */
+/*   Updated: 2023/11/03 23:53:29 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	sort2(t_stack *stack)
 	v = get_values(stack);
 	if (v[0] > v[1])
 		swap(stack, 1);
+	free(v);
 }
 
 void	sort3(t_stack *stack)
@@ -26,8 +27,12 @@ void	sort3(t_stack *stack)
 	int	*v;
 
 	v = get_values(stack);
-	if (v[0] < v[1] && v[1] < v[2]) // 1 2 3
+	if (v[0] < v[1] && v[1] < v[2])
+	{
+		free(v);
 		return ;
+	}
+		
 	else if (v[0] < v[1] && v[1] > v[2] && v[2] > v[0]) // 1 3 2
 	{
 		reverse_rotate(stack, 1);
@@ -44,6 +49,7 @@ void	sort3(t_stack *stack)
 		rotate(stack, 1);
 		swap(stack, 1);
 	}
+	free(v);
 }
 
 void	sort4(t_stack *a, t_stack *b)
@@ -99,7 +105,6 @@ void	sort6(t_stack *a, t_stack *b)
 {
 	t_node	*node;
 
-	// printf("--- sort6 ---\n");
 	node = NULL;
 	while (a->size > 3)
 	{
@@ -121,6 +126,4 @@ void	sort6(t_stack *a, t_stack *b)
 	pa(a, b);
 	rrb(b);
 	pa(a, b);
-	// print_stack(a);
-	// print_stack(b);
 }
