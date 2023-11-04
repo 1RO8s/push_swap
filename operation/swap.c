@@ -6,7 +6,7 @@
 /*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 04:41:59 by hnagasak          #+#    #+#             */
-/*   Updated: 2023/11/04 00:50:27 by hnagasak         ###   ########.fr       */
+/*   Updated: 2023/11/05 03:03:01 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,16 @@ void	swap(t_stack *stack, int print_flg)
 void	sa(t_stack *a)
 {
 	swap(a, 1);
-	ft_printf("sa!!\n");
 }
 
 void	sb(t_stack *b)
 {
 	swap(b, 1);
-	ft_printf("sb!!\n");
 }
 
 void	ss(t_stack *a, t_stack *b)
 {
 	swap(a, 0);
 	swap(b, 0);
-	ft_printf("sb\n");
+	ft_printf("ss\n");
 }
