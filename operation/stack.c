@@ -6,7 +6,7 @@
 /*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:30:16 by hnagasak          #+#    #+#             */
-/*   Updated: 2023/10/29 00:08:01 by hnagasak         ###   ########.fr       */
+/*   Updated: 2023/11/04 11:42:25 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,22 @@ int	pop(t_stack *stack)
 	remove = NULL;
 	stack->size--;
 	return (pop_value);
+}
+
+void	free_stack(t_stack *stack)
+{
+	t_node	*node;
+	t_node	*next;
+
+	node = NULL;
+	while (stack->size > 0)
+	{
+		if (node == NULL)
+			node = stack->top;
+		next = node->next;
+		free(node);
+		node = next;
+		stack->size--;
+	}
+	free(stack);
 }

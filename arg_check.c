@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arg_cheker.c                                       :+:      :+:    :+:   */
+/*   arg_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 05:57:37 by hnagasak          #+#    #+#             */
-/*   Updated: 2023/11/03 01:33:37 by hnagasak         ###   ########.fr       */
+/*   Updated: 2023/11/04 03:51:51 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ long	ft_atoi_l(const char *str)
 	return (sign * nbr);
 }
 
-int	is_numbers(char *str)
+int	is_integer(char *str)
 {
 	int	i;
 
@@ -56,26 +56,29 @@ int	is_numbers(char *str)
 		else
 			return (0);
 	}
-	return (1);
-}
-
-int	is_integer(char *str)
-{
 	if (ft_atoi_l(str) < INT_MIN || INT_MAX < ft_atoi_l(str))
 		return (0);
 	return (1);
 }
 
-int	has_duplication(int *values, int i)
+int	is_invalid_arg(int argc, char *argv[])
 {
-	int	j;
+	int	i;
 
-	j = 0;
-	while (j < i)
+	if (argc == 1)
 	{
-		if (values[i] == values[j])
+		ft_printf("Error\nmissing arguments\n");
+		return (1);
+	}
+	i = 0;
+	while (i < argc - 1)
+	{
+		if (!is_integer(argv[i + 1]))
+		{
+			ft_printf("Error\nNot Integer\n");
 			return (1);
-		j++;
+		}
+		i++;
 	}
 	return (0);
 }
@@ -89,18 +92,32 @@ int	*argvtoi(int argc, char *argv[])
 	i = 0;
 	while (i < argc - 1)
 	{
-		if (!is_numbers(argv[i + 1]) || !is_integer(argv[i + 1]))
-		{
-			ft_printf("Error\nNot Integer@@@\n");
-			exit(0);
-		}
 		values[i] = ft_atoi(argv[i + 1]);
-		if (has_duplication(values, i))
-		{
-			ft_printf("Error\nHas duplication\n");
-			exit(0);
-		}
 		i++;
 	}
 	return (values);
+}
+
+int	has_duplication(int *values, int values_size)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < values_size)
+	{
+		j = 0;
+		while (j < i)
+		{
+			if (values[i] == values[j])
+			{
+				ft_printf("Error\nDuplicate number\n");
+				free(values);
+				return (1);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
 }

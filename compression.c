@@ -6,28 +6,11 @@
 /*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 21:33:07 by hnagasak          #+#    #+#             */
-/*   Updated: 2023/11/02 01:42:59 by hnagasak         ###   ########.fr       */
+/*   Updated: 2023/11/05 00:26:45 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	compression(t_stack *stack)
-{
-	int	min;
-	int	value;
-	int	i;
-
-	i = 0;
-	while (i < stack->size)
-	{
-		value = stack->top->value;
-		if (value < min)
-			min = value;
-		stack->top = stack->top->next;
-		i++;
-	}
-}
 
 void	bubble_sort(int *values, int size)
 {
@@ -78,4 +61,5 @@ void	set_order(t_stack *stack)
 		}
 		tmp = tmp->next;
 	}
+	free(values);
 }
