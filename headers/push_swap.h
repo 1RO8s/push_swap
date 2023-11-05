@@ -6,7 +6,7 @@
 /*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 07:59:50 by hnagasak          #+#    #+#             */
-/*   Updated: 2023/11/06 07:18:20 by hnagasak         ###   ########.fr       */
+/*   Updated: 2023/11/06 07:24:59 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,9 @@ int					ft_abs(int n);
 
 // utils2.c
 void				rotate_ab(t_stack *a, t_stack *b, int cost_a, int cost_b);
+
+int	calc_cost(int value, t_stack *stack);
+int	get_total_cost(int cost_a, int cost_b);
 
 // libft
 int					ft_atoi(const char *str);

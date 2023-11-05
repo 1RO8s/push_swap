@@ -1,5 +1,5 @@
 .PHONY: all debug analyze clean fclean re bonus
-.DEFALUT_GOAL := all
+.DEFAULT_GOAL := all
 
 NAME := push_swap
 CHCKER := mychecker
@@ -17,6 +17,7 @@ operation/swap.c\
 operation/push.c\
 operation/rotate.c\
 operation/reverse_rotate.c\
+sort/calc_cost.c\
 sort/rotate_stack.c\
 sort/sort.c\
 sort/turk_sort.c\
