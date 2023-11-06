@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: hnagasak <hnagasak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 17:41:36 by hnagasak          #+#    #+#             */
-/*   Updated: 2023/11/04 01:09:49 by hnagasak         ###   ########.fr       */
+/*   Updated: 2023/11/06 14:21:02 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,27 +94,17 @@ void	sort5(t_stack *a, t_stack *b)
 	pa(a, b);
 }
 
-void	sort6(t_stack *a, t_stack *b)
+void	sort(t_stack *a, t_stack *b, int argc)
 {
-	t_node	*node;
-
-	node = NULL;
-	while (a->size > 3)
-	{
-		if (node == NULL)
-			node = a->top;
-		if (node->ordinal == 0 || node->ordinal == 1 || node->ordinal == 2)
-			pb(a, b);
-		else
-			rotate(a, 1);
-		node = a->top;
-	}
-	sort3(a);
-	sort3(b);
-	rrb(b);
-	pa(a, b);
-	rrb(b);
-	pa(a, b);
-	rrb(b);
-	pa(a, b);
+	set_order(a);
+	if (argc - 1 == 2)
+		sort2(a);
+	else if (argc - 1 == 3)
+		sort3(a);
+	else if (argc - 1 == 4)
+		sort4(a, b);
+	else if (argc - 1 == 5)
+		sort5(a, b);
+	else if (argc - 1 >= 6)
+		turk_sort(a, b);
 }

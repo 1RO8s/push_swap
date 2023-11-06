@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: hnagasak <hnagasak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 07:59:50 by hnagasak          #+#    #+#             */
-/*   Updated: 2023/11/06 07:24:59 by hnagasak         ###   ########.fr       */
+/*   Updated: 2023/11/06 14:12:21 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void				sort2(t_stack *a);
 void				sort3(t_stack *a);
 void				sort4(t_stack *a, t_stack *b);
 void				sort5(t_stack *a, t_stack *b);
-void				sort6(t_stack *a, t_stack *b);
+void				sort(t_stack *a, t_stack *b, int argc);
 
 // turk_sort.c
 void				exe_rotate_a(t_stack *a, int op_cnt);
@@ -111,8 +111,8 @@ int					ft_abs(int n);
 // utils2.c
 void				rotate_ab(t_stack *a, t_stack *b, int cost_a, int cost_b);
 
-int	calc_cost(int value, t_stack *stack);
-int	get_total_cost(int cost_a, int cost_b);
+int					calc_cost(int value, t_stack *stack);
+int					get_total_cost(int cost_a, int cost_b);
 
 // libft
 int					ft_atoi(const char *str);
