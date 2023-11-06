@@ -6,7 +6,7 @@
 /*   By: hnagasak <hnagasak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 05:57:37 by hnagasak          #+#    #+#             */
-/*   Updated: 2023/11/06 14:27:04 by hnagasak         ###   ########.fr       */
+/*   Updated: 2023/11/06 15:55:49 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ void	input_opes(t_stack *a, t_stack *b)
 			exe_ope(a, b, opes[i]);
 			i++;
 		}
+		free(opes);
+		opes = NULL;
 		if (is_asc_sorted(a))
 			break ;
 	}
@@ -84,4 +86,7 @@ int	main(int argc, char *argv[])
 		ft_printf("OK\n");
 	else
 		ft_printf("KO\n");
+	free_stack(a);
+	free_stack(b);
+	free(values);
 }
