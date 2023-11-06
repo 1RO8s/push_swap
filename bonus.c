@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: hnagasak <hnagasak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 05:57:37 by hnagasak          #+#    #+#             */
-/*   Updated: 2023/11/06 08:01:40 by hnagasak         ###   ########.fr       */
+/*   Updated: 2023/11/06 14:27:04 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,24 +40,14 @@ void	exe_ope(t_stack *a, t_stack *b, char *str)
 		ft_printf("Error\n");
 }
 
-int	main(int argc, char *argv[])
+void	input_opes(t_stack *a, t_stack *b)
 {
-	int		values_count;
-	int		*values;
-	t_stack	*a;
-	t_stack	*b;
 	char	input[100];
 	size_t	bytes;
 	char	**opes;
 	int		i;
-	int		j;
 
-	values_count = argc - 1;
-	values = argvtoi(argc, argv);
-	a = create_stack('A', values, values_count);
-	b = create_stack('B', NULL, 0);
-	i = 0;
-	while (i < 10)
+	while (1)
 	{
 		bytes = read(STDIN_FILENO, input, sizeof(input));
 		if (bytes < 0)
@@ -67,16 +57,29 @@ int	main(int argc, char *argv[])
 		}
 		input[bytes] = '\0';
 		opes = ft_split(input, '\n');
-		j = 0;
-		while (opes[j] != NULL)
+		i = 0;
+		while (opes[i] != NULL)
 		{
-			exe_ope(a, b, opes[j]);
-			j++;
+			exe_ope(a, b, opes[i]);
+			i++;
 		}
 		if (is_asc_sorted(a))
 			break ;
-		i++;
 	}
+}
+
+int	main(int argc, char *argv[])
+{
+	int		values_count;
+	int		*values;
+	t_stack	*a;
+	t_stack	*b;
+
+	values_count = argc - 1;
+	values = argvtoi(argc, argv);
+	a = create_stack('A', values, values_count);
+	b = create_stack('B', NULL, 0);
+	input_opes(a, b);
 	if (is_asc_sorted(a))
 		ft_printf("OK\n");
 	else
