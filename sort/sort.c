@@ -6,7 +6,7 @@
 /*   By: hnagasak <hnagasak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 17:41:36 by hnagasak          #+#    #+#             */
-/*   Updated: 2023/11/06 14:21:02 by hnagasak         ###   ########.fr       */
+/*   Updated: 2023/11/06 20:26:34 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	sort4(t_stack *a, t_stack *b)
 {
 	t_node	*node;
 
+	if (is_asc_sorted(a))
+		return ;
 	node = NULL;
 	while (a->size > 3)
 	{
@@ -75,6 +77,8 @@ void	sort5(t_stack *a, t_stack *b)
 {
 	t_node	*node;
 
+	if (is_asc_sorted(a))
+		return ;
 	node = NULL;
 	while (a->size > 3)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arg_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: hnagasak <hnagasak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 05:57:37 by hnagasak          #+#    #+#             */
-/*   Updated: 2023/11/04 03:51:51 by hnagasak         ###   ########.fr       */
+/*   Updated: 2023/11/06 21:28:41 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,9 @@ int	is_integer(char *str)
 	{
 		if (is_space(str[i]))
 			i++;
-		else if (str[i] == '-' || str[i] == '+')
+		else if (
+			(str[i] == '-' || str[i] == '+') &&
+			('0' <= str[i+1] && str[i+1] <= '9'))
 			i++;
 		else if ('0' <= str[i] && str[i] <= '9')
 			i++;
@@ -67,7 +69,7 @@ int	is_invalid_arg(int argc, char *argv[])
 
 	if (argc == 1)
 	{
-		ft_printf("Error\nmissing arguments\n");
+		// ft_printf("Error\nmissing arguments\n");
 		return (1);
 	}
 	i = 0;

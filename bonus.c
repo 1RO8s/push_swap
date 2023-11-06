@@ -6,7 +6,7 @@
 /*   By: hnagasak <hnagasak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 05:57:37 by hnagasak          #+#    #+#             */
-/*   Updated: 2023/11/06 15:55:49 by hnagasak         ###   ########.fr       */
+/*   Updated: 2023/11/06 21:49:37 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,21 @@ void	exe_ope(t_stack *a, t_stack *b, char *str)
 		ft_printf("Error\n");
 }
 
-void	input_opes(t_stack *a, t_stack *b)
+// return 0, if read fails
+int	input_opes(t_stack *a, t_stack *b, char *input)
 {
-	char	input[100];
 	size_t	bytes;
 	char	**opes;
 	int		i;
 
+	printf("--- input_ope ---\n");
+
 	while (1)
 	{
+		ft_printf("+");
 		bytes = read(STDIN_FILENO, input, sizeof(input));
 		if (bytes < 0)
-		{
-			perror("read");
-			exit(1);
-		}
+			return (0);
 		input[bytes] = '\0';
 		opes = ft_split(input, '\n');
 		i = 0;
@@ -68,20 +68,41 @@ void	input_opes(t_stack *a, t_stack *b)
 		if (is_asc_sorted(a))
 			break ;
 	}
+	printf("--- looped ---\n");
+	return (1);
+}
+
+void	free_memories(t_stack *a, t_stack *b, int *values)
+{
+	free_stack(a);
+	a = NULL;
+	free_stack(b);
+	b = NULL;
+	free(values);
+	values = NULL;
 }
 
 int	main(int argc, char *argv[])
 {
 	int		values_count;
 	int		*values;
+	char	input[100];
 	t_stack	*a;
 	t_stack	*b;
 
+	printf("--- main ---\n");
 	values_count = argc - 1;
 	values = argvtoi(argc, argv);
 	a = create_stack('A', values, values_count);
 	b = create_stack('B', NULL, 0);
-	input_opes(a, b);
+	printf("--- created stack ---\n");
+	if (!input_opes(a, b, input))
+	{
+		printf("fail\n");
+		free_memories(a, b, values);
+		return (1);
+	}
+	printf("--- exec ---\n");
 	if (is_asc_sorted(a))
 		ft_printf("OK\n");
 	else

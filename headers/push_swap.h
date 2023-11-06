@@ -6,7 +6,7 @@
 /*   By: hnagasak <hnagasak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 07:59:50 by hnagasak          #+#    #+#             */
-/*   Updated: 2023/11/06 14:12:21 by hnagasak         ###   ########.fr       */
+/*   Updated: 2023/11/06 21:18:33 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_cost
 }					t_cost;
 
 // arg_check.c
+long				ft_atoi_l(const char *str);
 int					is_invalid_arg(int argc, char *argv[]);
 int					*argvtoi(int argc, char *argv[]);
 int					has_duplication(int *values, int values_size);
