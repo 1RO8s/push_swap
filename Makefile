@@ -20,7 +20,7 @@ sort/rotate_stack.c\
 sort/sort.c\
 sort/turk_sort.c\
 sort/utils.c\
-debug.c\
+# debug.c\
 # test/test_swap.c\
 
 SRCS_MANDATORY = $(COMMON_SRCS) push_swap.c
